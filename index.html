@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
             name="description"
-            content="Documentation for the Kittn API"
+            content="Documentation for the Patient Portal API"
         >
     <title>API Reference</title>
 
@@ -295,7 +295,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -306,7 +306,6 @@
       <img src="images/logo-1e815a84.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
@@ -319,321 +318,565 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#patient-portal" class="toc-h1 toc-link" data-title="Patient Portal">Patient Portal</a>
+            <a href="#patient-portal-api-v1" class="toc-h1 toc-link" data-title="Patient Portal API V1">Patient Portal API V1</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-prescriptions" class="toc-h2 toc-link" data-title="GET All Prescriptions">GET All Prescriptions</a>
+                  </li>
                   <li>
                     <a href="#login" class="toc-h2 toc-link" data-title="Login">Login</a>
                   </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
-              <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#verify-otp" class="toc-h2 toc-link" data-title="Verify OTP">Verify OTP</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#get-all-lab-reports" class="toc-h2 toc-link" data-title="GET All Lab Reports">GET All Lab Reports</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#get-all-files" class="toc-h2 toc-link" data-title="GET All Files">GET All Files</a>
                   </li>
               </ul>
-          </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
+            <li><a href="/">Currnet</a> <a href="/v1">V1</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Welcome to the Patient Portal API!</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='patient-portal-api-v1'>Patient Portal API V1</h1>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">kittn</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">"</span><span class="s2">meowmeowmeow</span><span class="dl">"</span><span class="p">);</span>
+<p><h2 id='get-all-prescriptions'>GET All Prescriptions</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">&quot;https://ept.praavahealth.com/API/MS/GetPrescriptions?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000106901&quot;</span>
+<span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">request</span><span class="dl">&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">&#39;</span><span class="s1">method</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">GET</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">url</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">https://ept.praavahealth.com/API/MS/GetPrescriptions?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000106901</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">headers</span><span class="dl">&#39;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">&#39;https://ept.praavahealth.com/API/MS/GetPrescriptions?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000106901&#39;</span>
 </code></pre></div>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p>This is the response we should get</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='patient-portal'>Patient Portal</h1><h2 id='login'>Login</h2>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OTP Sent"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"An OTP has been sent to your registered mobile number +88017*****300"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<p></blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;upi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PHBL0000106901&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;patient_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DEWAN RABITA AREFIN&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;consultation_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7/24/2022 1:31:25 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;doctor_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Perpetuo Dela Cruz&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;doctor_department&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Physiotherapy&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;prescription_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/birtreports?<em>reportFormat=pdf&amp;ReportName=CustomEncounterSummary.rptdesign&amp;patientId=111717&amp;encounterId=209338&amp;summaryTemplate=24941&amp;branchId=988&amp;deptId=405686&amp;consultantId=28&amp;ServerPath=http://52.221.159.98:9090/live/fos/?type</em>=12&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;upi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PHBL0000106901&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;patient_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DEWAN RABITA AREFIN&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;consultation_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7/21/2022 2:47:08 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;doctor_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Perpetuo Dela Cruz&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;doctor_department&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Physiotherapy&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;prescription_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/birtreports?<em>reportFormat=pdf&amp;ReportName=CustomEncounterSummary.rptdesign&amp;patientId=111717&amp;encounterId=208797&amp;summaryTemplate=24941&amp;branchId=988&amp;deptId=405686&amp;consultantId=28&amp;ServerPath=http://52.221.159.98:9090/live/fos/?type</em>=12&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fetched Prescriptions&quot;</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint retrives all the prescriptions of an indivual patient. </p>
 <h3 id='get-http-request'>GET HTTP Request</h3>
 <p><code>GET https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=&lt;token&gt;&amp;upi=&lt;api&gt;</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HTTP Request</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=<token> upi=<api></td>
+</tr>
+</tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No Headers required</p>
+<h3 id='input-schema-of-request'>Input Schema of request</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
 <th>Description</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>token</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>Mandatory token for authorization.</td>
+<td>true</td>
 </tr>
 <tr>
 <td>upi</td>
+<td>UPI of the individual patient.</td>
 <td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
 </tr>
 </tbody></table>
-
-<!-- Customization end -->
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">kittn</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">"</span><span class="s2">meowmeowmeow</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
-</code></pre></div>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='output-schema-of-request'>Output Schema of request</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
+<th>Filed</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>success</td>
+<td>status of the request.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>result</td>
+<td>json array of prescriptions</td>
 </tr>
-</tbody></table>
+<tr>
+<td>message</td>
+<td>message of the response</td>
+</tr>
+</tbody></table></p></p>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">kittn</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">"</span><span class="s2">meowmeowmeow</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p><h2 id='login'>Login</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">&quot;https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000350467&quot;</span>
+<span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">request</span><span class="dl">&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">&#39;</span><span class="s1">method</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">GET</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">url</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000350467</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">headers</span><span class="dl">&#39;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">&#39;https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000350467&#39;</span>
 </code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
+<p>This is the response we should get</p>
+
+<p></blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="nl">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OTP Sent&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;An OTP has been sent to your registered mobile number +88017*****300&quot;</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p>This endpoint login a patient to the portal. </p>
+<h3 id='get-http-request'>GET HTTP Request</h3>
+<p><code>GET https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=&lt;token&gt;&amp;upi=&lt;upi&gt;</code></p>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HTTP Request</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=<token>&amp;upi=<upi></td>
+</tr>
+</tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No Headers required</p>
+<h3 id='input-schema-of-request'>Input Schema of request</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>token</td>
+<td>Mandatory token for authorization.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>upi</td>
+<td>UPI of the individual patient.</td>
+<td>true</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h3 id='output-schema-of-request'>Output Schema of request</h3>
+<table><thead>
+<tr>
+<th>Filed</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>status of the request.</td>
+</tr>
+<tr>
+<td>result</td>
+<td>result of the request.</td>
+</tr>
+<tr>
+<td>message</td>
+<td>message of the response</td>
+</tr>
+</tbody></table></p></p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">kittn</span><span class="dl">"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">"</span><span class="s2">meowmeowmeow</span><span class="dl">"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<p><h2 id='verify-otp'>Verify OTP</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">&quot;https://ept.praavahealth.com/Admin/otp/validatePhblOtp?otp=836254&amp;token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000350467&quot;</span>
+<span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">request</span><span class="dl">&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">&#39;</span><span class="s1">method</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">GET</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">url</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">https://ept.praavahealth.com/Admin/otp/validatePhblOtp?otp=836254&amp;token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000350467</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">headers</span><span class="dl">&#39;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">&#39;https://ept.praavahealth.com/Admin/otp/validatePhblOtp?otp=836254&amp;token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000350467&#39;</span>
 </code></pre></div>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
+<p>This is the response we should get</p>
+
+<p></blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+    </span><span class="nl">&quot;Success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;Result&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;No Data Found&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;Message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid Patient&quot;</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p>This endpoint verifies an OTP. </p>
+<h3 id='get-http-request'>GET HTTP Request</h3>
+<p><code>GET https://ept.praavahealth.com/Admin/otp/validatePhblOtp?otp=&lt;otp&gt;&amp;token=&lt;token&gt;&amp;upi=&lt;upi&gt;</code></p>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HTTP Request</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://ept.praavahealth.com/Admin/otp/validatePhblOtp?otp=<otp>&amp;token=<token>&amp;upi=<upi></td>
+</tr>
+</tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No Headers required</p>
+<h3 id='input-schema-of-request'>Input Schema of request</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Description</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>otp</td>
+<td>OTP for verification             .</td>
+<td>true</td>
+</tr>
+<tr>
+<td>token</td>
+<td>Mandatory token for authorization.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>upi</td>
+<td>UPI of the individual patient.</td>
+<td>true</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
+<h3 id='output-schema-of-request'>Output Schema of request</h3>
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Filed</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>success</td>
+<td>status of the request.</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>result</td>
+<td>json array of prescriptions</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>message</td>
+<td>message of the response</td>
+</tr>
+</tbody></table></p></p>
+
+<p><h2 id='get-all-lab-reports'>GET All Lab Reports</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span></p>
+
+<p><span class="n">url</span> <span class="o">=</span> <span class="s">&quot;https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000106901&quot;</span></p>
+
+<p><span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span></p>
+
+<p><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></p>
+
+<p><span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">request</span><span class="dl">&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">&#39;</span><span class="s1">method</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">GET</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">url</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000106901</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">headers</span><span class="dl">&#39;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">&#39;https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000106901&#39;</span>
+</code></pre></div>
+<blockquote>
+<p>This is the response we should get</p>
+
+<p></blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;upi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PHBL0000106901&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;patient_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DEWAN RABITA AREFIN&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;mobile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8801755619159&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;certified_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7/3/2022 5:45:47 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;lab_service_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Serum Creatinine&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;lab_report&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/birtreports?<em>reportFormat=pdf&amp;ReportName=labreportsamplewiseforpatient.rptdesign&amp;</em><em>id=parameterPage&amp;</em><em>masterpage=true&amp;sampleIds=*BI0307220047&amp;visitid=504170&amp;showLabReportHeader=true&amp;visitstatusid=108&amp;serviceCenterId=*405828&amp;ServerPath=http://172.16.62.175:9090/live/fos/?type</em>=12&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;upi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PHBL0000106901&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;patient_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DEWAN RABITA AREFIN&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;mobile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8801755619159&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;certified_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7/1/2022 3:15:57 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;lab_service_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Glucose - Random&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;lab_report&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/birtreports?<em>reportFormat=pdf&amp;ReportName=labreportsamplewiseforpatient.rptdesign&amp;</em><em>id=parameterPage&amp;</em><em>masterpage=true&amp;sampleIds=*BI3006220131&amp;visitid=502348&amp;showLabReportHeader=true&amp;visitstatusid=108&amp;serviceCenterId=*405828&amp;ServerPath=http://172.16.62.175:9090/live/fos/?type</em>=12&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fetched Investigation Reports&quot;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrives all the lab reports of an indivual patient. </p>
+<h3 id='get-http-request'>GET HTTP Request</h3>
+<p><code>GET https://ept.praavahealth.com/API/Lab/GetLabReports?token=&lt;token&gt;&amp;upi=&lt;upi&gt;</code></p>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HTTP Request</td>
+<td>GET</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>URL</td>
+<td>https://ept.praavahealth.com/API/Lab/GetLabReports?token=<token>&amp;upi=<upi></td>
 </tr>
 </tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No Headers required</p>
+<h3 id='input-schema-of-request'>Input Schema of request</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>Mandatory token for authorization.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>upi</td>
+<td>UPI of the individual patient.</td>
+<td>true</td>
+</tr>
+</tbody></table>
+<h3 id='output-schema-of-request'>Output Schema of request</h3>
+<table><thead>
+<tr>
+<th>Filed</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>status of the request.</td>
+</tr>
+<tr>
+<td>result</td>
+<td>json array of all lab reports</td>
+</tr>
+<tr>
+<td>message</td>
+<td>message of the response</td>
+</tr>
+</tbody></table></p></p>
+
+<p><h2 id='get-all-files'>GET All Files</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span></p>
+
+<p><span class="n">url</span> <span class="o">=</span> <span class="s">&quot;https://ept.praavahealth.com/API/MS/GetMyFiles?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000000111&quot;</span></p>
+
+<p><span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span></p>
+
+<p><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></p>
+
+<p><span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">request</span><span class="dl">&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">&#39;</span><span class="s1">method</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">GET</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">url</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">https://ept.praavahealth.com/API/MS/GetMyFiles?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000000111</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">headers</span><span class="dl">&#39;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">&#39;https://ept.praavahealth.com/API/MS/GetMyFiles?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000000111&#39;</span>
+</code></pre></div>
+<blockquote>
+<p>This is the response we should get</p>
+
+<p></blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;68736&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xr&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;68736_0111.pdf&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pdf&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;uploadeddate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7/12/2022 5:14:53 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/fos?type_=14&amp;filename=68736_0111.pdf&amp;patientDocumentId=68736&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1694&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;XR&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1694_0111 MR.PONCHANON.jpg&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jpg&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;uploadeddate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5/27/2018 5:28:49 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/fos?type_=14&amp;filename=1694_0111 MR.PONCHANON.jpg&amp;patientDocumentId=1694&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;464&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lab Report (6-12-2017)&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;464_PHBL0000000111 PONCHANON DATTA.pdf&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pdf&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;uploadeddate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12/11/2017 5:10:03 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/fos?type_=14&amp;filename=464_PHBL0000000111 PONCHANON DATTA.pdf&amp;patientDocumentId=464&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fetched Uploaded Files&quot;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrives all the files of an indivual patient. </p>
+<h3 id='get-http-request'>GET HTTP Request</h3>
+<p><code>GET https://ept.praavahealth.com/API/MS/GetMyFiles?token=&lt;token&gt;&amp;upi=&lt;upi&gt;</code></p>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HTTP Request</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://ept.praavahealth.com/API/MS/GetMyFiles?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000000111</td>
+</tr>
+</tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No Headers required</p>
+<h3 id='input-schema-of-request'>Input Schema of request</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>Mandatory token for authorization.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>upi</td>
+<td>UPI of the individual patient.</td>
+<td>true</td>
+</tr>
+</tbody></table>
+<h3 id='output-schema-of-request'>Output Schema of request</h3>
+<table><thead>
+<tr>
+<th>Filed</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>status of the request.</td>
+</tr>
+<tr>
+<td>result</td>
+<td>json array of all files.</td>
+</tr>
+<tr>
+<td>message</td>
+<td>message of the response .</td>
+</tr>
+</tbody></table></p></p>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
                 <a href="#" data-language-name="javascript">javascript</a>
           </div>
