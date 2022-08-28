@@ -1,0 +1,90 @@
+## GET All Lab Reports
+
+```python
+import requests
+
+url = "https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000106901"
+
+payload={}
+headers = {}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000106901',
+  'headers': {
+  }
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+```
+
+```shell
+curl --location --request GET 'https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000106901'
+```
+
+> This is the response we should get
+
+```json
+{
+    "success": true,
+    "result": [
+        {
+            "upi": "PHBL0000106901",
+            "patient_name": "DEWAN RABITA AREFIN",
+            "mobile": "8801755619159",
+            "certified_date": "7/3/2022 5:45:47 PM",
+            "lab_service_name": "Serum Creatinine",
+            "lab_report": "http://52.221.159.98:9090/live/birtreports?_reportFormat=pdf&ReportName=labreportsamplewiseforpatient.rptdesign&__id=parameterPage&__masterpage=true&sampleIds=*BI0307220047&visitid=504170&showLabReportHeader=true&visitstatusid=108&serviceCenterId=*405828&ServerPath=http://172.16.62.175:9090/live/fos/?type_=12"
+        },
+        {
+            "upi": "PHBL0000106901",
+            "patient_name": "DEWAN RABITA AREFIN",
+            "mobile": "8801755619159",
+            "certified_date": "7/1/2022 3:15:57 PM",
+            "lab_service_name": "Glucose - Random",
+            "lab_report": "http://52.221.159.98:9090/live/birtreports?_reportFormat=pdf&ReportName=labreportsamplewiseforpatient.rptdesign&__id=parameterPage&__masterpage=true&sampleIds=*BI3006220131&visitid=502348&showLabReportHeader=true&visitstatusid=108&serviceCenterId=*405828&ServerPath=http://172.16.62.175:9090/live/fos/?type_=12"
+        }
+    ],
+    "message": "Fetched Investigation Reports"
+}
+```
+
+This endpoint retrives all the lab reports of an indivual patient. 
+
+### GET HTTP Request
+
+`GET https://ept.praavahealth.com/API/Lab/GetLabReports?token=<token>&upi=<upi>`
+
+### Request Information
+
+| Category          | Value                                                                           |
+| ---------         | ---------------------------------------------------------------                 |
+| HTTP Request      | GET                                                                             |
+| URL               | https://ept.praavahealth.com/API/Lab/GetLabReports?token=<token>&upi=<upi>      | 
+
+### Headers
+No Headers required
+
+### Input Schema of request
+
+| Parameter  | Description                                                     | Required |
+| ---------  | --------------------------------------------------------------- | -------- |
+| token      | Mandatory token for authorization.                              | true     |
+| upi        | UPI of the individual patient.                                  | true     |     
+
+### Output Schema of request
+
+| Filed          | Description                                                     |
+| ---------      | --------------------------------------------------------------- |
+| success        | status of the request.                                          |
+| result         | json array of all lab reports                                     |    
+| message        | message of the response                                         |    
