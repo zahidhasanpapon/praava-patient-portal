@@ -329,6 +329,12 @@
                   <li>
                     <a href="#verify-otp" class="toc-h2 toc-link" data-title="Verify OTP">Verify OTP</a>
                   </li>
+                  <li>
+                    <a href="#get-all-lab-reports" class="toc-h2 toc-link" data-title="GET All Lab Reports">GET All Lab Reports</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-files" class="toc-h2 toc-link" data-title="GET All Files">GET All Files</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -634,6 +640,236 @@
 <tr>
 <td>message</td>
 <td>message of the response</td>
+</tr>
+</tbody></table></p></p>
+
+<p><h2 id='get-all-lab-reports'>GET All Lab Reports</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span></p>
+
+<p><span class="n">url</span> <span class="o">=</span> <span class="s">&quot;https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000106901&quot;</span></p>
+
+<p><span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span></p>
+
+<p><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></p>
+
+<p><span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">request</span><span class="dl">&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">&#39;</span><span class="s1">method</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">GET</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">url</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000106901</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">headers</span><span class="dl">&#39;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">&#39;https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000106901&#39;</span>
+</code></pre></div>
+<blockquote>
+<p>This is the response we should get</p>
+
+<p></blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;upi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PHBL0000106901&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;patient_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DEWAN RABITA AREFIN&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;mobile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8801755619159&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;certified_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7/3/2022 5:45:47 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;lab_service_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Serum Creatinine&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;lab_report&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/birtreports?<em>reportFormat=pdf&amp;ReportName=labreportsamplewiseforpatient.rptdesign&amp;</em><em>id=parameterPage&amp;</em><em>masterpage=true&amp;sampleIds=*BI0307220047&amp;visitid=504170&amp;showLabReportHeader=true&amp;visitstatusid=108&amp;serviceCenterId=*405828&amp;ServerPath=http://172.16.62.175:9090/live/fos/?type</em>=12&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;upi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PHBL0000106901&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;patient_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DEWAN RABITA AREFIN&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;mobile&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8801755619159&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;certified_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7/1/2022 3:15:57 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;lab_service_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Glucose - Random&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;lab_report&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/birtreports?<em>reportFormat=pdf&amp;ReportName=labreportsamplewiseforpatient.rptdesign&amp;</em><em>id=parameterPage&amp;</em><em>masterpage=true&amp;sampleIds=*BI3006220131&amp;visitid=502348&amp;showLabReportHeader=true&amp;visitstatusid=108&amp;serviceCenterId=*405828&amp;ServerPath=http://172.16.62.175:9090/live/fos/?type</em>=12&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fetched Investigation Reports&quot;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrives all the lab reports of an indivual patient. </p>
+<h3 id='get-http-request'>GET HTTP Request</h3>
+<p><code>GET https://ept.praavahealth.com/API/Lab/GetLabReports?token=&lt;token&gt;&amp;upi=&lt;upi&gt;</code></p>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HTTP Request</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://ept.praavahealth.com/API/Lab/GetLabReports?token=<token>&amp;upi=<upi></td>
+</tr>
+</tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No Headers required</p>
+<h3 id='input-schema-of-request'>Input Schema of request</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>Mandatory token for authorization.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>upi</td>
+<td>UPI of the individual patient.</td>
+<td>true</td>
+</tr>
+</tbody></table>
+<h3 id='output-schema-of-request'>Output Schema of request</h3>
+<table><thead>
+<tr>
+<th>Filed</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>status of the request.</td>
+</tr>
+<tr>
+<td>result</td>
+<td>json array of all lab reports</td>
+</tr>
+<tr>
+<td>message</td>
+<td>message of the response</td>
+</tr>
+</tbody></table></p></p>
+
+<p><h2 id='get-all-files'>GET All Files</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span></p>
+
+<p><span class="n">url</span> <span class="o">=</span> <span class="s">&quot;https://ept.praavahealth.com/API/MS/GetMyFiles?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000000111&quot;</span></p>
+
+<p><span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span></p>
+
+<p><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span></p>
+
+<p><span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">&#39;</span><span class="s1">request</span><span class="dl">&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">&#39;</span><span class="s1">method</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">GET</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">url</span><span class="dl">&#39;</span><span class="p">:</span> <span class="dl">&#39;</span><span class="s1">https://ept.praavahealth.com/API/MS/GetMyFiles?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000000111</span><span class="dl">&#39;</span><span class="p">,</span>
+  <span class="dl">&#39;</span><span class="s1">headers</span><span class="dl">&#39;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">&#39;https://ept.praavahealth.com/API/MS/GetMyFiles?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000000111&#39;</span>
+</code></pre></div>
+<blockquote>
+<p>This is the response we should get</p>
+
+<p></blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">&quot;success&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">&quot;result&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;68736&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xr&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;68736_0111.pdf&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pdf&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;uploadeddate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7/12/2022 5:14:53 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/fos?type_=14&amp;filename=68736_0111.pdf&amp;patientDocumentId=68736&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1694&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;XR&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1694_0111 MR.PONCHANON.jpg&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jpg&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;uploadeddate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;5/27/2018 5:28:49 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/fos?type_=14&amp;filename=1694_0111 MR.PONCHANON.jpg&amp;patientDocumentId=1694&quot;</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;464&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Lab Report (6-12-2017)&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;464_PHBL0000000111 PONCHANON DATTA.pdf&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pdf&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;uploadeddate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;12/11/2017 5:10:03 PM&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="nl">&quot;link&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://52.221.159.98:9090/live/fos?type_=14&amp;filename=464_PHBL0000000111 PONCHANON DATTA.pdf&amp;patientDocumentId=464&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fetched Uploaded Files&quot;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>This endpoint retrives all the files of an indivual patient. </p>
+<h3 id='get-http-request'>GET HTTP Request</h3>
+<p><code>GET https://ept.praavahealth.com/API/MS/GetMyFiles?token=&lt;token&gt;&amp;upi=&lt;upi&gt;</code></p>
+<h3 id='request-information'>Request Information</h3>
+<table><thead>
+<tr>
+<th>Category</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>HTTP Request</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>https://ept.praavahealth.com/API/MS/GetMyFiles?token=03e62234b7238ca3eab782f30b9dfa94&amp;upi=PHBL0000000111</td>
+</tr>
+</tbody></table>
+<h3 id='headers'>Headers</h3>
+<p>No Headers required</p>
+<h3 id='input-schema-of-request'>Input Schema of request</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>Mandatory token for authorization.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>upi</td>
+<td>UPI of the individual patient.</td>
+<td>true</td>
+</tr>
+</tbody></table>
+<h3 id='output-schema-of-request'>Output Schema of request</h3>
+<table><thead>
+<tr>
+<th>Filed</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>status of the request.</td>
+</tr>
+<tr>
+<td>result</td>
+<td>json array of all files.</td>
+</tr>
+<tr>
+<td>message</td>
+<td>message of the response .</td>
 </tr>
 </tbody></table></p></p>
 
