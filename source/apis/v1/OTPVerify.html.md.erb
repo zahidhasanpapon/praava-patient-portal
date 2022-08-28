@@ -1,0 +1,70 @@
+## Verify OTP
+
+```python
+import requests
+url = "https://ept.praavahealth.com/Admin/otp/validatePhblOtp?otp=836254&token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000350467"
+payload={}
+headers = {}
+response = requests.request("GET", url, headers=headers, data=payload)
+print(response.text)
+```
+
+```javascript
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://ept.praavahealth.com/Admin/otp/validatePhblOtp?otp=836254&token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000350467',
+  'headers': {
+  }
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+```
+
+```shell
+curl --location --request GET 'https://ept.praavahealth.com/Admin/otp/validatePhblOtp?otp=836254&token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000350467'
+```
+
+> This is the response we should get
+
+```json
+{
+    "Success": false,
+    "Result": "No Data Found",
+    "Message": "Invalid Patient"
+}
+```
+
+This endpoint verifies an OTP. 
+
+### GET HTTP Request
+
+`GET https://ept.praavahealth.com/Admin/otp/validatePhblOtp?otp=<otp>&token=<token>&upi=<upi>`
+
+### Request Information
+
+| Category          | Value                                                                           |
+| ---------         | ---------------------------------------------------------------                 |
+| HTTP Request      | GET                                                                             |
+| URL               | https://ept.praavahealth.com/Admin/otp/validatePhblOtp?otp=<otp>&token=<token>&upi=<upi>      | 
+
+### Headers
+No Headers required
+
+### Input Schema of request
+
+| Parameter  | Description                                                     | Required |
+| ---------  | --------------------------------------------------------------- | -------- |
+| otp        | OTP for verification             .                              | true     |
+| token      | Mandatory token for authorization.                              | true     |
+| upi        | UPI of the individual patient.                                  | true     |     
+
+### Output Schema of request
+
+| Filed          | Description                                                     |
+| ---------      | --------------------------------------------------------------- |
+| success        | status of the request.                                          |
+| result         | json array of prescriptions                                     |    
+| message        | message of the response                                         |    

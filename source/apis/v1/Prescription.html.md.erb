@@ -1,0 +1,86 @@
+## GET All Prescriptions
+
+```python
+import requests
+url = "https://ept.praavahealth.com/API/MS/GetPrescriptions?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000106901"
+payload={}
+headers = {}
+response = requests.request("GET", url, headers=headers, data=payload)
+print(response.text)
+```
+
+```javascript
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://ept.praavahealth.com/API/MS/GetPrescriptions?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000106901',
+  'headers': {
+  }
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+```
+
+```shell
+curl --location --request GET 'https://ept.praavahealth.com/API/MS/GetPrescriptions?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000106901'
+```
+
+> This is the response we should get
+
+```json
+{
+    "success": true,
+    "result": [
+        {
+            "upi": "PHBL0000106901",
+            "patient_name": "DEWAN RABITA AREFIN",
+            "consultation_date": "7/24/2022 1:31:25 PM",
+            "doctor_name": "Perpetuo Dela Cruz",
+            "doctor_department": "Physiotherapy",
+            "prescription_link": "http://52.221.159.98:9090/live/birtreports?_reportFormat=pdf&ReportName=CustomEncounterSummary.rptdesign&patientId=111717&encounterId=209338&summaryTemplate=24941&branchId=988&deptId=405686&consultantId=28&ServerPath=http://52.221.159.98:9090/live/fos/?type_=12"
+        },
+        {
+            "upi": "PHBL0000106901",
+            "patient_name": "DEWAN RABITA AREFIN",
+            "consultation_date": "7/21/2022 2:47:08 PM",
+            "doctor_name": "Perpetuo Dela Cruz",
+            "doctor_department": "Physiotherapy",
+            "prescription_link": "http://52.221.159.98:9090/live/birtreports?_reportFormat=pdf&ReportName=CustomEncounterSummary.rptdesign&patientId=111717&encounterId=208797&summaryTemplate=24941&branchId=988&deptId=405686&consultantId=28&ServerPath=http://52.221.159.98:9090/live/fos/?type_=12"
+        }
+    ],
+    "message": "Fetched Prescriptions"
+}
+```
+
+This endpoint retrives all the prescriptions of an indivual patient. 
+
+### GET HTTP Request
+
+`GET https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=<token>&upi=<api>`
+
+### Request Information
+
+| Category          | Value                                                                           |
+| ---------         | ---------------------------------------------------------------                 |
+| HTTP Request      | GET                                                                             |
+| URL               | https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=<token> upi=<api>      | 
+
+### Headers
+No Headers required
+
+### Input Schema of request
+
+| Parameter  | Description                                                     | Required |
+| ---------  | --------------------------------------------------------------- | -------- |
+| token      | Mandatory token for authorization.                              | true     |
+| upi        | UPI of the individual patient.                                  | true     |     
+
+### Output Schema of request
+
+| Filed          | Description                                                     |
+| ---------      | --------------------------------------------------------------- |
+| success        | status of the request.                                          |
+| result         | json array of prescriptions                                     |    
+| message        | message of the response                                         |    
