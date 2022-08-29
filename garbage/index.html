@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Documentation</title>
+        <meta
+            name="description"
+            content="Documentation for the Patient Portal API"
+        >
+    <title>API Reference</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -284,11 +288,14 @@
     </style>
     <link href="../stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
     <link href="../stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
-      <script src="../javascripts/all_nosearch-18c3ed8e.js"></script>
+      <script src="../javascripts/all-b12a2749.js"></script>
 
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
   </head>
 
-  <body class="copy-index copy-index_index" data-languages="[]">
+  <body class="garbage garbage_index" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -297,15 +304,33 @@
     </a>
     <div class="toc-wrapper">
       <img src="../images/logo-1e815a84.png" class="logo" alt="" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
       </ul>
+        <ul class="toc-footer">
+            <li><a href="/">Currnet</a> <a href="/v1">V1</a></li>
+        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        
+        <p>&lt;%= partial &quot;./apis/v1/v1.html.md.erb&quot; %&gt;</p>
+
       </div>
       <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
       </div>
     </div>
   </body>
