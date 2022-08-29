@@ -1,9 +1,9 @@
-## Imagine Services
+## Imaging Services
 
 ```python
 import requests
 
-url = "https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=03e62234b7238ca3eab782f30b9dfa94&code=116"
+url = "https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=<token>&code=<code>"
 
 payload={}
 headers = {}
@@ -17,7 +17,7 @@ print(response.text)
 var request = require('request');
 var options = {
   'method': 'GET',
-  'url': 'https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=03e62234b7238ca3eab782f30b9dfa94&code=116',
+  'url': 'https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=<token>&code=<code>',
   'headers': {
   }
 };
@@ -28,7 +28,7 @@ request(options, function (error, response) {
 ```
 
 ```shell
-curl --location --request GET 'https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=03e62234b7238ca3eab782f30b9dfa94&code=116'
+curl --location --request GET 'https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=<token>&code=<code>'
 ```
 
 > This is the response we should get

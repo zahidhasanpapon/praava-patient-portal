@@ -3,7 +3,7 @@
 ```python
 import requests
 
-url = "https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000106901"
+url = "https://ept.praavahealth.com/API/Lab/GetLabReports?token=<token>&upi=<upi>"
 
 payload={}
 headers = {}
@@ -17,7 +17,7 @@ print(response.text)
 var request = require('request');
 var options = {
   'method': 'GET',
-  'url': 'https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000106901',
+  'url': 'https://ept.praavahealth.com/API/Lab/GetLabReports?token=<token>&upi=<upi>',
   'headers': {
   }
 };
@@ -28,7 +28,7 @@ request(options, function (error, response) {
 ```
 
 ```shell
-curl --location --request GET 'https://ept.praavahealth.com/API/Lab/GetLabReports?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000106901'
+curl --location --request GET 'https://ept.praavahealth.com/API/Lab/GetLabReports?token=<token>&upi=<upi>'
 ```
 
 > This is the response we should get

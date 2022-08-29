@@ -2,7 +2,7 @@
 
 ```python
 import requests
-url = "https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000350467"
+url = "https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=<token>&upi=<upi>"
 payload={}
 headers = {}
 response = requests.request("GET", url, headers=headers, data=payload)
@@ -13,7 +13,7 @@ print(response.text)
 var request = require('request');
 var options = {
   'method': 'GET',
-  'url': 'https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000350467',
+  'url': 'https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=<token>&upi=<upi>',
   'headers': {
   }
 };
@@ -24,7 +24,7 @@ request(options, function (error, response) {
 ```
 
 ```shell
-curl --location --request GET 'https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000350467'
+curl --location --request GET 'https://ept.praavahealth.com/Admin/otp/createPhblOtp?token=<token>&upi=<upi>'
 ```
 
 > This is the response we should get
