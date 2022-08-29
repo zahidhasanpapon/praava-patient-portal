@@ -1,0 +1,92 @@
+## Other Services
+
+```python
+import requests
+
+url = "https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=03e62234b7238ca3eab782f30b9dfa94&code=117,100066,1012,1118"
+
+payload={}
+headers = {}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=03e62234b7238ca3eab782f30b9dfa94&code=117,100066,1012,1118',
+  'headers': {
+  }
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+```
+
+```shell
+curl --location --request GET 'https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=03e62234b7238ca3eab782f30b9dfa94&code=117,100066,1012,1118'
+```
+
+> This is the response we should get
+
+```json
+{
+    "success": true,
+    "result": [
+        {
+            "service_name": "Zirconia Crown (Per Unit)",
+            "id": "406",
+            "org": "Praava Health",
+            "price_mrp": "25,000",
+            "price_offer": "20,000",
+            "add_to_cart": "false",
+            "qty": "1"
+        },
+        {
+            "service_name": "Zirconium Jacket Crown",
+            "id": "405",
+            "org": "Praava Health",
+            "price_mrp": "20,000",
+            "price_offer": "16,000",
+            "add_to_cart": "false",
+            "qty": "1"
+        }
+    ],
+    "message": "Fetched Service List"
+}
+```
+
+This endpoint retrives all the other services. 
+
+### GET HTTP Request
+
+`GET https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=<token>&code=<code>`
+
+### Request Information
+
+| Category          | Value                                                                           |
+| ---------         | ---------------------------------------------------------------                 |
+| HTTP Request      | GET                                                                             |
+| URL               | https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=<token>&code=<code>      | 
+
+### Headers
+No Headers required
+
+### Input Schema of request
+
+| Parameter  | Description                                                     | Required |
+| ---------  | --------------------------------------------------------------- | -------- |
+| token      | Mandatory token for authorization.                              | true     |
+| code        | Service code                                 | true     |     
+
+### Output Schema of request
+
+| Filed          | Description                                                     |
+| ---------      | --------------------------------------------------------------- |
+| success        | status of the request.                                          |
+| result         | json array of all the other services                                     |    
+| message        | message of the response                                         |    

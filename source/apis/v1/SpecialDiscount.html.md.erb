@@ -1,0 +1,88 @@
+## GET All Special Discounts
+
+```python
+import requests
+
+url = "https://ept.praavahealth.com/API/PatientPortal/Offers?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000000111"
+
+payload={}
+headers = {}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+```javascript
+var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'https://ept.praavahealth.com/API/PatientPortal/Offers?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000000111',
+  'headers': {
+  }
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+```
+
+```shell
+curl --location --request GET 'https://ept.praavahealth.com/API/PatientPortal/Offers?token=03e62234b7238ca3eab782f30b9dfa94&upi=PHBL0000000111'
+```
+
+> This is the response we should get
+
+```json
+{
+    "success": true,
+    "result": [
+        {
+            "id": "27",
+            "is_special": "False",
+            "title": "Covid Supportive Pack ",
+            "image_link": "https://ept.praavahealth.com/Images/PatientPortal/Offers/20bn.png",
+            "offer_link": "https://offer.praavahealth.com/covid-supportive-pack"
+        },
+        {
+            "id": "28",
+            "is_special": "False",
+            "title": "Fit to fly",
+            "image_link": "https://ept.praavahealth.com/Images/PatientPortal/Offers/21bn.png",
+            "offer_link": "https://offer.praavahealth.com/fit-to-fly"
+        }
+    ],
+    "message": "Fetched Offer Reports"
+}
+```
+
+This endpoint retrives all the special discounts. 
+
+### GET HTTP Request
+
+`GET https://ept.praavahealth.com/API/PatientPortal/Offers?token=<token>&upi=<upi>`
+
+### Request Information
+
+| Category          | Value                                                                           |
+| ---------         | ---------------------------------------------------------------                 |
+| HTTP Request      | GET                                                                             |
+| URL               | https://ept.praavahealth.com/API/PatientPortal/Offers?token=<token>&upi=<upi>     | 
+
+### Headers
+No Headers required
+
+### Input Schema of request
+
+| Parameter  | Description                                                     | Required |
+| ---------  | --------------------------------------------------------------- | -------- |
+| token      | Mandatory token for authorization.                              | true     |
+| upi        | UPI of the individual patient.                                  | true     |     
+
+### Output Schema of request
+
+| Filed          | Description                                                     |
+| ---------      | --------------------------------------------------------------- |
+| success        | status of the request.                                          |
+| result         | json array of all the special discounts.                                  |    
+| message        | message of the response .                                        |    
