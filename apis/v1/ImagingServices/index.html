@@ -288,7 +288,7 @@
 
   </head>
 
-  <body class="apis apis_v1 apis_v1_ImagineServices apis_v1_ImagineServices_index" data-languages="[]">
+  <body class="apis apis_v1 apis_v1_ImagingServices apis_v1_ImagingServices_index" data-languages="[]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -296,16 +296,16 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="../../../images/logo-1e815a84.png" class="logo" alt="" />
+      <img src="../../../images/logo-63059809.png" class="logo" alt="" />
       <ul id="toc" class="toc-list-h1">
       </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h2 id='imagine-services'>Imagine Services</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+        <h2 id='imaging-services'>Imaging Services</h2><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=03e62234b7238ca3eab782f30b9dfa94&amp;code=116"</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=&lt;token&gt;&amp;code=&lt;code&gt;"</span>
 
 <span class="n">payload</span><span class="o">=</span><span class="p">{}</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
@@ -316,7 +316,7 @@
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">request</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
   <span class="dl">'</span><span class="s1">method</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">GET</span><span class="dl">'</span><span class="p">,</span>
-  <span class="dl">'</span><span class="s1">url</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=03e62234b7238ca3eab782f30b9dfa94&amp;code=116</span><span class="dl">'</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">url</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=&lt;token&gt;&amp;code=&lt;code&gt;</span><span class="dl">'</span><span class="p">,</span>
   <span class="dl">'</span><span class="s1">headers</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span>
   <span class="p">}</span>
 <span class="p">};</span>
@@ -324,7 +324,7 @@
   <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=03e62234b7238ca3eab782f30b9dfa94&amp;code=116'</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> GET <span class="s1">'https://ept.praavahealth.com/API/PatientPortal/ServiceMaster?token=&lt;token&gt;&amp;code=&lt;code&gt;'</span>
 </code></pre></div>
 <blockquote>
 <p>This is the response we should get</p>
